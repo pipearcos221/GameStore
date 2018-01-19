@@ -10,16 +10,17 @@
             name="game"
             type="unicauca.movil.gamestore.data.model.Game"/>
         <variable
-            name="position"
-            type="int"/>
+            name="clickGame"
+            type="io.reactivex.subjects.PublishSubject"/>
         <variable
-            name="handler"
-            type="unicauca.movil.gamestore.ui.adapters.GameAdapter"/>
+            name="clickFavorite"
+            type="io.reactivex.subjects.PublishSubject"/>
     </data>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()-> handler.onClickGame(position)}"
+        android:onClick="@{()->clickGame.onNext(game)}"
         >
 
         <android.support.v7.widget.CardView
@@ -94,10 +95,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:setOnClickListener="@{()-> handler.onClickFavorite(position)}"
+                    app:setOnClickListener="@{()->clickFavorite.onNext(game)}"
                     app:srcCompat="@drawable/ic_favorite" />
 
             </android.support.constraint.ConstraintLayout>

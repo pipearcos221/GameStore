@@ -4,8 +4,10 @@ import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.subjects.PublishSubject
 import unicauca.movil.gamestore.R
 import unicauca.movil.gamestore.data.model.Game
+import unicauca.movil.gamestore.databinding.TemplateGameBinding
 import unicauca.movil.gamestore.utils.inflate
 
 
@@ -15,42 +17,29 @@ import unicauca.movil.gamestore.utils.inflate
 
 class GameAdapter: RecyclerView.Adapter<GameHolder>(){
 
-    var onGameSelected:((position:Int)->Unit)? = null
-    var onFavoriteSelected:((position:Int)->Unit)? = null
+    val clickGame = PublishSubject.create<Game>()
+    val clickFavorite = PublishSubject.create<Game>()
 
-    var data : List<Game> = emptyList()
+    var games : List<Game> = emptyList()
         set(value){
             field = value
             notifyDataSetChanged()
         }
 
-    override fun onBindViewHolder(holder: GameHolder, position: Int) {
-        holder.bind(data[position], position, this)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameHolder =
             GameHolder(parent.inflate(R.layout.template_game))
 
-    override fun getItemCount(): Int = data.size
+    override fun onBindViewHolder(holder: GameHolder, position: Int) {
+        holder.binding.game = games[position]
+        holder.binding.clickGame = clickGame
+        holder.binding.clickFavorite = clickFavorite
 
-    fun onClickFavorite(position: Int){
-        onFavoriteSelected?.invoke(position)
     }
 
-    fun onClickGame(position: Int){
-        onGameSelected?.invoke(position)
-    }
+    override fun getItemCount(): Int = games.size
 
 }
 
 class GameHolder(view: View): RecyclerView.ViewHolder(view){
-
-    private val binding:TemplateGameBinding = DataBindingUtil.bind(view)
-
-    fun bind(game: Game, position: Int, handler: GameAdapter){
-        binding.game = game
-        binding.position = position
-        binding.handler = handler
-    }
-
+    val binding: TemplateGameBinding = DataBindingUtil.bind(view)
 }
