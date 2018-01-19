@@ -1,7 +1,8 @@
-package unicauca.movil.gamestore
+package unicauca.movil.gamestore.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import unicauca.movil.gamestore.R
 
 class MainActivity : AppCompatActivity() {
 
