@@ -6,6 +6,7 @@ import dagger.Binds
 import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
+import unicauca.movil.gamestore.ui.detail.DetailViewModel
 import unicauca.movil.gamestore.ui.main.MainViewModel
 import unicauca.movil.gamestore.utils.AppViewModelFactory
 import kotlin.reflect.KClass
@@ -28,6 +29,11 @@ abstract class ViewModelModule{
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindGameViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    abstract fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
 
 
 }

@@ -13,7 +13,7 @@
             name="clickGame"
             type="io.reactivex.subjects.PublishSubject"/>
         <variable
-            name="clickFavorite"
+            name="clickDelete"
             type="io.reactivex.subjects.PublishSubject"/>
     </data>
 
@@ -99,8 +99,8 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:setOnClickListener="@{()->clickFavorite.onNext(game)}"
-                    app:srcCompat="@drawable/ic_favorite" />
+                    app:setOnClickListener="@{()->clickDelete.onNext(game)}"
+                    app:srcCompat="@drawable/ic_close" />
 
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>

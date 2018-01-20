@@ -5,7 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import unicauca.movil.gamestore.App
-import unicauca.movil.gamestore.di.modules.ActivityBuilders
+import unicauca.movil.gamestore.di.ActivityBuilders
 import unicauca.movil.gamestore.di.modules.AppModule
 import unicauca.movil.gamestore.di.modules.ViewModelModule
 import javax.inject.Singleton

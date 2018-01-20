@@ -7,19 +7,18 @@ import android.view.ViewGroup
 import io.reactivex.subjects.PublishSubject
 import unicauca.movil.gamestore.R
 import unicauca.movil.gamestore.data.model.Game
+import unicauca.movil.gamestore.databinding.TemplateFavoriteBinding
 import unicauca.movil.gamestore.databinding.TemplateGameBinding
 import unicauca.movil.gamestore.utils.inflate
 import javax.inject.Inject
 
-
 /**
- * Created by Asus on 18/01/2018.
+ * Created by jlbeltran94 on 20/01/2018.
  */
-
-class GameAdapter @Inject constructor(): RecyclerView.Adapter<GameHolder>(){
+class FavoriteAdapter @Inject constructor(): RecyclerView.Adapter<FavoriteHolder>(){
 
     val clickGame = PublishSubject.create<Game>()
-    val clickFavorite = PublishSubject.create<Game>()
+    val clickDelete = PublishSubject.create<Game>()
 
     var games : List<Game> = emptyList()
         set(value){
@@ -27,13 +26,13 @@ class GameAdapter @Inject constructor(): RecyclerView.Adapter<GameHolder>(){
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameHolder =
-            GameHolder(parent.inflate(R.layout.template_game))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteHolder =
+            FavoriteHolder(parent.inflate(R.layout.template_favorite))
 
-    override fun onBindViewHolder(holder: GameHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoriteHolder, position: Int) {
         holder.binding.game = games[position]
         holder.binding.clickGame = clickGame
-        holder.binding.clickFavorite = clickFavorite
+        holder.binding.clickDelete = clickDelete
 
     }
 
@@ -41,6 +40,6 @@ class GameAdapter @Inject constructor(): RecyclerView.Adapter<GameHolder>(){
 
 }
 
-class GameHolder(view: View): RecyclerView.ViewHolder(view){
-    val binding: TemplateGameBinding = DataBindingUtil.bind(view)
+class FavoriteHolder(view: View): RecyclerView.ViewHolder(view){
+    val binding: TemplateFavoriteBinding = DataBindingUtil.bind(view)
 }
