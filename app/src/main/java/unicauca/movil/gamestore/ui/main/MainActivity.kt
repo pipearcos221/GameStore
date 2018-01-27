@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity(), Injectable {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         list.adapter = adapter
         adapter.games = mainViewModel.getData()
-        title = "Video Juegos"
-       mainViewModel.loadData()
+        title = "Juegos"
+        mainViewModel.loadData()
 
     }
 

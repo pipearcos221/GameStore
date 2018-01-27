@@ -32,6 +32,9 @@ class FavoriteActivity : AppCompatActivity(), Injectable {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_favorite)
         list.adapter = adapter
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         title = "Favoritos"
         getFav()
     }
@@ -48,8 +51,13 @@ class FavoriteActivity : AppCompatActivity(), Injectable {
                 .subscribe()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
 
-    fun getFav(){
+
+    private fun getFav(){
         mainViewModel.loadFav().subscribeBy(
                 onNext = {
                     adapter.games = it
