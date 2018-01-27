@@ -34,7 +34,6 @@ class FavoriteActivity : AppCompatActivity(), Injectable {
         list.adapter = adapter
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
         title = "Favoritos"
         getFav()
     }
